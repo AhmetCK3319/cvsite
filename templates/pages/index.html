@@ -1,0 +1,134 @@
+    {% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!--================Home Banner Area =================-->
+<section class="home_banner_area">
+	<div class="container box_1620">
+		<div class="banner_inner d-flex align-items-center">
+			<div class="banner_content">
+				<div class="media">
+					<div class="d-flex">
+						<img src="{{ resim.url }}" alt="Profile Picture" width="450px" height="567px">
+					</div>
+					<div class="media-body">
+						<div class="personal_text">
+							<h6>i am</h6>
+							<h3>{{ author_name }}</h3>
+							<h4>{{ author_job }}</h4>
+							<p style="text-indent: 20px;text-align: justify;"><i class="fa-solid fa-quote-left fa-xl" style="color: rgb(4, 78, 53);"></i>&nbsp; {{ author_description }}<i class="fa-solid fa-quote-right fa-xl" style="color:rgb(4, 78, 53);"></i> </p>
+							<ul class="list basic_info">
+								<li><a href="mailto:ahmetcankoca1990@hotmail.com"><i class="lnr lnr-envelope"></i>
+										ahmetcankoca1990@hotmail.com</a></li>
+								<li><a href="javascript:void(0)"><i class="lnr lnr-home"></i> Kocasinan - Kayseri </a>
+								</li>
+							</ul>
+							<ul class="list personal_social">
+								{% for social in socials %}
+								<li><a href="{{ social.link }}" target="_blank">{{ social.icon|safe }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--================End Home Banner Area =================-->
+
+<!--================Welcome Area =================-->
+<section class="welcome_area p_120">
+	<div class="container">
+		<div class="row welcome_inner">
+			<div class="col-lg-12">
+				<div class="tools_expert">
+					<div class="skill_main">
+						<br><span class="mb-3" style="font-weight: bold;">Backend</span><br><br>
+						<div class="row">
+							{% for skill in backend %}
+							<div class="col-lg-3">
+								<div class="skill_item mb-5">
+									<h4>{{ skill.name }} %&nbsp;<span class="counter"> {{ skill.percent }} </span></h4>
+									<div class="progress_br">
+										<div class="progress">
+											<div class="progress-bar" role="progressbar"
+												aria-valuenow="{{ skill.percent }}" aria-valuemin="0"
+												aria-valuemax="100"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<hr>
+						<br><br><span class="mb-3" style="font-weight: bold;">Frontend</span><br><br>
+
+						<div class="row">
+							{% for skill in frontend %}
+							<div class="col-lg-3">
+								<div class="skill_item mb-5">
+									<h4> {{ skill.name }} %&nbsp; <span class="counter">{{ skill.percent }}</span></h4>
+									<div class="progress_br">
+										<div class="progress">
+											<div class="progress-bar" role="progressbar"
+												aria-valuenow="{{ skill.percent }}" aria-valuemin="0"
+												aria-valuemax="100"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<hr>
+
+						<br><br><span class="mb-3" style="font-weight: bold;">Devops</span><br><br>
+
+						<div class="row">
+							{% for skill in devops %}
+							<div class="col-lg-3">
+								<div class="skill_item mb-5">
+									<h4>{{ skill.name }} %&nbsp; <span class="counter">{{ skill.percent }}</span></h4>
+									<div class="progress_br">
+										<div class="progress">
+											<div class="progress-bar" role="progressbar"
+												aria-valuenow="{{ skill.percent }}" aria-valuemin="0"
+												aria-valuemax="100"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<hr>
+
+						<br><br><span class="mb-3" style="font-weight: bold;">Other</span><br><br>
+
+						<div class="row">
+							{% for skill in other %}
+							<div class="col-lg-3">
+								<div class="skill_item mb-5">
+									<h4>{{ skill.name }} %&nbsp;<span class="counter">{{ skill.percent }}</span></h4>
+									<div class="progress_br">
+										<div class="progress">
+											<div class="progress-bar" role="progressbar"
+												aria-valuenow="{{ skill.percent }}" aria-valuemin="0"
+												aria-valuemax="100"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+						<hr>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+<!--================End Welcome Area =================-->
+
+{% endblock %}
