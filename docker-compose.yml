@@ -6,7 +6,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - "postgresql-data:/var/lib/postgresql/data"
+      - "postgresql-data:/var/lib/postgresql"
     command: -p 5432
     networks:
       - custom_network
