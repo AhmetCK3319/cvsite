@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:17
+    image: postgres:15-alpine
     env_file:
       - resume/docker.env
     ports:
@@ -10,6 +10,14 @@ services:
     command: -p 5432
     networks:
       - custom_network
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U POSTGRES_USER=ahmet_user"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
   app:
     container_name: app_resume
     hostname: app_resume
@@ -17,7 +25,8 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     env_file:
       - resume/docker.env
     volumes:
@@ -27,6 +36,7 @@ services:
     command: gunicorn resume.wsgi:application --bind 0.0.0.0:8000
     networks:
       - custom_network
+
   nginx:
     build:
       context: ./nginx
@@ -37,7 +47,8 @@ services:
     ports:
       - 80:80
     networks:
-        - custom_network
+      - custom_network
+
 volumes:
   postgresql-data:
   static-data:
@@ -45,4 +56,3 @@ volumes:
 networks:
   custom_network:
     driver: bridge
-
