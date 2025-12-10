@@ -17,8 +17,7 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      postgres:
-        condition: service_healthy
+      - postgres
     env_file:
       - resume/docker.env
     volumes:
@@ -28,7 +27,6 @@ services:
     command: gunicorn resume.wsgi:application --bind 0.0.0.0:8000
     networks:
       - custom_network
-
   nginx:
     build:
       context: ./nginx
@@ -39,8 +37,7 @@ services:
     ports:
       - 80:80
     networks:
-      - custom_network
-
+        - custom_network
 volumes:
   postgresql-data:
   static-data:
@@ -48,3 +45,4 @@ volumes:
 networks:
   custom_network:
     driver: bridge
+
