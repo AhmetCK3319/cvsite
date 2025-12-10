@@ -1,7 +1,6 @@
 services:
   postgres:
     image: postgres:latest
-
     env_file:
       - resume/docker.env
     ports:
@@ -42,7 +41,6 @@ services:
 volumes:
   postgresql-data:
   static-data:
-
 networks:
   custom_network:
     driver: bridge
