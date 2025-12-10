@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   postgres:
     image: postgres:latest
@@ -8,8 +9,6 @@ services:
     volumes:
       - "postgresql-data:/var/lib/postgresql/data"
     command: -p 5432
-    networks:
-      - custom_network
   app:
     container_name: app_resume
     hostname: app_resume
@@ -25,8 +24,6 @@ services:
     ports:
       - "0.0.0.0:8000:8000"
     command: gunicorn resume.wsgi:application --bind 0.0.0.0:8000
-    networks:
-      - custom_network
   nginx:
     build:
       context: ./nginx
@@ -36,12 +33,8 @@ services:
       - app
     ports:
       - 80:80
-    networks:
-        - custom_network
+
+
 volumes:
   postgresql-data:
   static-data:
-networks:
-  custom_network:
-    driver: bridge
-
