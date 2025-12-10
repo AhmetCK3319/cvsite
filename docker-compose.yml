@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:latest
+
     env_file:
       - resume/docker.env
     ports:
